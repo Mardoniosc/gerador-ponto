@@ -1,0 +1,48 @@
+.enviar-horario {
+  height: 60px;
+  width: 100%;
+  color: #fff;
+  background: transparent;
+  font-weight: 500;
+  border: none;
+  border-radius: 5px;
+  z-index: 2;
+  position: relative;
+  overflow: hidden;
+  margin-top: 35px;
+  outline: none; }
+  .enviar-horario:after {
+    position: absolute;
+    content: '';
+    left: 0;
+    top: 0;
+    background-image: -webkit-linear-gradient(0deg, #ff6975 0%, #d34d94 56%, #a730b2 100%);
+    width: 100%;
+    height: 100%;
+    z-index: -2;
+    border-radius: 5px; }
+  .enviar-horario:before {
+    background: #20152a;
+    position: absolute;
+    content: '';
+    left: 2px;
+    border-radius: 5px;
+    cursor: pointer;
+    top: 2px;
+    right: 2px;
+    bottom: 2px;
+    z-index: -1;
+    -webkit-transition: all 0.3s ease-in;
+    -moz-transition: all 0.3s ease-in;
+    -o-transition: all 0.3s ease-in;
+    transition: all 0.3s ease-in; }
+  .enviar-horario:before {
+    opacity: 0; }
+  .enviar-horario:hover:before {
+    opacity: 1; }
+
+
+
+.background-horarios {
+  background-image: -webkit-linear-gradient(0deg, #ff6975 0%, #d34d94 56%, #a730b2 100%);
+}
