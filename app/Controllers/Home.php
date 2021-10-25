@@ -2,6 +2,8 @@
 
 namespace App\Controllers;
 
+use CodeIgniter\Config\Services;
+
 class Home extends BaseController
 {
     public function index() {
@@ -39,5 +41,28 @@ class Home extends BaseController
         }
 
         return view('home');
+    }
+
+    public function enviarEmail() {
+        
+        if($this->request->getMethod() == 'post') {
+
+            $email = Services::email();
+    
+            $email->setFrom($this->request->getPost('email'), $this->request->getPost('assunto'));
+            $email->setTo('mardonio@live.com');
+    
+            $email->setSubject($this->request->getPost('assunto'));
+    
+            $mensagem = $this->request->getPost('mensagem');
+            
+            $email->setMessage($mensagem);
+    
+            $email->send();
+
+            return redirect()->to(site_url('home'))->with("info", "E-mail enviado com sucesso!") ;
+        }
+
+        return redirect()->to(site_url('home'));
     }
 }
