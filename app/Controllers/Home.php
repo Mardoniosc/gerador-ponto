@@ -22,20 +22,23 @@ class Home extends BaseController
                 return redirect()->to('home')->with('info', "O horário de entrada não pode ser igual ou superior ao horário de saida!");
             }
 
-            /* Horário de almoço */
-            $minutoVarianteAlmoco = rand(1,9);
-            $horarioSaidaAlmoco = $entrada[0] + (($saida[0] - $entrada[0]) / 2) - 1;
-            $horarioEntradaAlmoco = $horarioSaidaAlmoco + $almoco[0];
-            
 
-            $data['entrada_2'] = sprintf('%02d:%02d:00',$horarioEntradaAlmoco, $minutoVarianteAlmoco);
-            $data['saida_1'] = sprintf('%02d:%02d:00',$horarioSaidaAlmoco, $minutoVarianteAlmoco);
+            /* Horário de almoço */
+            if(!(number_format($almoco[0]) < 1 && number_format($almoco[1] < 1))) {
+                $minutoVarianteAlmoco = rand(1,9);
+                $horarioSaidaAlmoco = $entrada[0] + (($saida[0] - $entrada[0]) / 2) - 1;
+                $horarioEntradaAlmoco = $horarioSaidaAlmoco + $almoco[0];
+                
+    
+                $data['saida_1'] = sprintf('%02d:%02d:00',$horarioSaidaAlmoco, $minutoVarianteAlmoco);
+                $data['entrada_2'] = sprintf('%02d:%02d:00',$horarioEntradaAlmoco, $minutoVarianteAlmoco + $almoco[1]);
+            }
 
             /* Horário de entrada e saída */
             $minutoVariante = rand(1,9);
             
-            $data['entrada_1'] = sprintf('%02d:%02d:00',$entrada[0], $minutoVariante);
-            $data['saida_2'] = sprintf('%02d:%02d:00',$saida[0], $minutoVariante);
+            $data['entrada_1'] = sprintf('%02d:%02d:00',$entrada[0], $minutoVariante + $entrada[1]);
+            $data['saida_2'] = sprintf('%02d:%02d:00',$saida[0], $minutoVariante + $saida[1]);
 
             return view('home', $data);
         }

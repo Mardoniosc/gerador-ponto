@@ -123,8 +123,8 @@
               <tbody>
                 <tr>
                   <td><?php echo esc($entrada_1);?></th>
-                  <td><?php echo esc($saida_1);?></th>
-                  <td><?php echo esc($entrada_2);?></th>
+                  <td><?php echo esc(isset($saida_1)) != null ? $saida_1 : '';?></th>
+                  <td><?php echo esc(isset($entrada_2)) != null ? $entrada_2 : '';?></th>
                   <td><?php echo esc($saida_2);?></th>
                 </tr>
               </tbody>
